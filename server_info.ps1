@@ -91,7 +91,6 @@ net start w32time >> $log_file
 w32tm /query /status >> $log_file
 w32tm /query /configuration  >> $log_file
 w32tm /query /status /verbose  >> $log_file
-net stop w32time >> $log_file
 
 # 0014 Share Files
 header "0014 Share Files"  >> $log_file
