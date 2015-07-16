@@ -1,7 +1,7 @@
 # ======================================================
 # Windows Server info-get
-# Ver:0.1  
-# Date: 2015.07.13
+# Ver:0.3  
+# Date: 2015.07.16
 # Copyright(C) 2015 INNOVACTORY INC. ALL Rights Reserved.
 # ======================================================
 
@@ -87,7 +87,7 @@ reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Upd
 # 0013 NTP Settings
 header "0013 NTP Settings"  >> $log_file
 # NTP
-net start w32time >> $log_file
+net start w32time >> $log_file 2>&1
 w32tm /query /status >> $log_file
 w32tm /query /configuration  >> $log_file
 w32tm /query /status /verbose  >> $log_file
@@ -125,7 +125,6 @@ powercfg /devicequery all_devices  >> $log_file
 # 0020 Group Polcy/Local Security Policy
 header "0020 Group Polcy/Local Security Policy"  >> $log_file
 gpresult /z  >> $log_file
-gpresult /h .\gporesult_$log_time.html
 secedit /export /areas SECURITYPOLICY /cfg .\secedit_$log_time.txt  >> $log_file
 type .\secedit_$log_time.txt >> $log_file
 del .\secedit_$log_time.txt
